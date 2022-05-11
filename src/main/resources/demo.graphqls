@@ -1,0 +1,29 @@
+type Query {
+    getCustomerInfo(customerId: Int!): CustomerResponseDto!
+    findOrdersByCustomer(customerId: Int!): OrdersResponseDto!
+}
+
+type Mutation {
+    createCustomer(nickname: String!, email: String!): CustomerResponseDto!
+    createOrder(customerId: Int!, content: String!): OrderResponseDto!
+    updateOrder(customerId: Int!, orderId: Int!, content: String!): OrderResponseDto!
+}
+
+type CustomerResponseDto {
+  id: Int!
+  nickname: String!
+  email: String!
+}
+
+type OrderResponseDto {
+  id: Int
+  customer: CustomerResponseDto
+  content: String
+  createdAt: String
+  isDelivered: Boolean
+}
+
+type OrdersResponseDto {
+  orders: [OrderResponseDto]
+}
+
